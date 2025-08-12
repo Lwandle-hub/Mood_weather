@@ -23,13 +23,34 @@ if (weatherForm) {
     try {
       const data = await weatherSvc.fetchByCity(city);
       pastSearches.push(city);
-      select('#weather-city').textContent = city;
-      select('#weather-temp').textContent = data.daily.temperature_2m_max[0];
-      select('#weather-humidity').textContent = '—'; // Open-Meteo daily JSON may not include humidity
+      
+      // Display the city name from the API response (properly formatted)
+      select('#weather-city').textContent = data.cityName || city;
+      
+      // Display today's temperature
+      const todayTemp = data.daily.temperature_2m_max[0];
+      select('#weather-temp').textContent = Math.round(todayTemp);
+      
+      // Humidity not available in daily forecast, keep as placeholder
+      select('#weather-humidity').textContent = '—';
+      
+      // Show the results section
       resultSec.classList.remove('hidden');
-      createChart(select('#forecast-chart'), data.daily.time, data.daily.temperature_2m_max);
+      
+      // Create forecast chart with proper data
+      createChart(
+        select('#forecast-chart'), 
+        data.daily.time.slice(0, 7), // Show 7 days
+        data.daily.temperature_2m_max.slice(0, 7)
+      );
+      
+      // Clear any previous error messages
+      select('#weather-city').className = '';
+      
     } catch (err) {
+      console.error('Weather form error:', err);
       showMessage(select('#weather-city'), err.message, 'error');
+      resultSec.classList.add('hidden');
     }
   });
 }
