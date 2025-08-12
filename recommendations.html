@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <meta name="generator" content="Mood Waether"/>
   <title>Mood Waether — Recommendations</title>
   <link rel="stylesheet" href="style.css"/>
 </head>
-<body>
+<body data-theme="light">
   <header>
     <img src="assets/images/logo.png" alt="Logo" class="logo"/>
     <nav>
@@ -20,9 +20,13 @@
     </nav>
   </header>
 
-  <main>
-    <h1>Your Mood Recommendations</h1>
-    <ul id="recommendations-list" class="card"></ul>
+  <main class="container">
+    <h1>Personalized Recommendations</h1>
+    <p>Based on the last weather lookup, here’s how you can make the most of your day:</p>
+    <ul id="recommendations-list" class="card">
+      <!-- Populated dynamically via JS -->
+    </ul>
+    <p>If you haven’t checked the weather yet, <a href="weather.html" class="btn">Get Forecast</a></p>
   </main>
 
   <footer>
@@ -32,4 +36,3 @@
   <script type="module" src="scripts/script.js"></script>
 </body>
 </html>
-
