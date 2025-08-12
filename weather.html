@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <meta name="generator" content="Mood Waether"/>
   <title>Mood Waether — Weather</title>
   <link rel="stylesheet" href="style.css"/>
 </head>
-<body>
+<body data-theme="light">
   <header>
     <img src="assets/images/logo.png" alt="Logo" class="logo"/>
     <nav>
@@ -20,19 +20,22 @@
     </nav>
   </header>
 
-  <main>
+  <main class="container">
     <h1>Live Weather Lookup</h1>
-    <form id="weather-form">
+    <p>Enter your city name to fetch the latest forecast and plan your day.</p>
+
+    <form id="weather-form" class="card">
       <label for="city">City name:</label>
-      <input type="text" id="city" name="city" required pattern="[A-Za-z\s]+"/>
-      <button type="submit">Get Weather</button>
+      <input type="text" id="city" name="city" required pattern="[A-Za-z\s]+" placeholder="e.g., Cape Town"/>
+      <button type="submit" class="btn">Get Weather</button>
+      <small>Only letters and spaces allowed.</small>
     </form>
 
     <section id="weather-result" class="card hidden">
       <h2 id="weather-city"></h2>
-      <p>Temperature: <span id="weather-temp"></span>°C</p>
-      <p>Humidity: <span id="weather-humidity"></span>%</p>
-      <canvas id="forecast-chart" width="400" height="200"></canvas>
+      <p>Temperature Today: <strong><span id="weather-temp"></span>°C</strong></p>
+      <p>Humidity: <strong><span id="weather-humidity">—</span>%</strong></p>
+      <canvas id="forecast-chart"></canvas>
     </section>
   </main>
 
@@ -43,4 +46,3 @@
   <script type="module" src="scripts/script.js"></script>
 </body>
 </html>
-
