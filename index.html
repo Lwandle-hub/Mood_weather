@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <meta name="generator" content="Mood Waether"/>
   <title>Mood Waether — Home</title>
   <link rel="stylesheet" href="style.css"/>
 </head>
-<body>
+<body data-theme="light">
   <header>
     <img src="assets/images/logo.png" alt="Mood Waether Logo" class="logo"/>
     <nav>
@@ -16,13 +16,35 @@
       <a href="weather.html">Weather</a>
       <a href="recommendations.html">Recommendations</a>
       <a href="contact.html">Contact</a>
-      <button id="theme-toggle" aria-label="Toggle dark/light theme">🌗</button>
+      <button id="theme-toggle" aria-label="Toggle Theme">🌗</button>
     </nav>
   </header>
 
-  <main>
-    <h1>Welcome to Mood Waether</h1>
-    <p>Your daily weather insights and mood recommendations.</p>
+  <section class="hero">
+    <div class="container">
+      <h1>Welcome to Mood Waether</h1>
+      <p>Discover your perfect mood-boosting activity based on today’s weather.</p>
+      <a href="weather.html" class="btn">Check the Weather</a>
+    </div>
+  </section>
+
+  <main class="container">
+    <h2>Why Mood Waether?</h2>
+    <p>Mood Waether combines live weather data with personalized recommendations to help you make the most of each day—rain or shine.</p>
+    <section class="features">
+      <div class="feature-card">
+        <h3>Live Weather</h3>
+        <p>Instantly fetch hyper-local weather information for any city.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Mood Insights</h3>
+        <p>Get activity suggestions that match your mood and the forecast.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Data Visualization</h3>
+        <p>View a 5-day temperature trend chart powered by Chart.js.</p>
+      </div>
+    </section>
   </main>
 
   <footer>
@@ -32,5 +54,3 @@
   <script type="module" src="scripts/script.js"></script>
 </body>
 </html>
-
-
