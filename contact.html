@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <meta name="generator" content="Mood Waether"/>
   <title>Mood Waether — Contact</title>
   <link rel="stylesheet" href="style.css"/>
 </head>
-<body>
+<body data-theme="light">
   <header>
     <img src="assets/images/logo.png" alt="Logo" class="logo"/>
     <nav>
@@ -20,21 +20,23 @@
     </nav>
   </header>
 
-  <main>
-    <h1>Feedback</h1>
-    <form id="contact-form">
-      <label for="name">Name:</label>
-      <input type="text" id="name" required />
+  <main class="container">
+    <h1>Get in Touch</h1>
+    <p>We’d love to hear your feedback or suggestions for Mood Waether.</p>
 
-      <label for="email">Email:</label>
-      <input type="email" id="email" required />
+    <form id="contact-form" class="card">
+      <label for="name">Name</label>
+      <input type="text" id="name" required placeholder="Your name"/>
 
-      <label for="message">Message:</label>
-      <textarea id="message" rows="4" required></textarea>
+      <label for="email">Email</label>
+      <input type="email" id="email" required placeholder="you@example.com"/>
 
-      <button type="submit">Send Feedback</button>
+      <label for="message">Message</label>
+      <textarea id="message" rows="4" required placeholder="Your comments..."></textarea>
+
+      <button type="submit" class="btn">Send Feedback</button>
+      <div id="contact-msg" aria-live="polite"></div>
     </form>
-    <div id="contact-msg"></div>
   </main>
 
   <footer>
@@ -44,4 +46,3 @@
   <script type="module" src="scripts/script.js"></script>
 </body>
 </html>
-
