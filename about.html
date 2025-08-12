@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="generator" content="Mood Waether"/>
+  <title>Mood Waether — About</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header>
+    <img src="assets/images/logo.png" alt="Logo" class="logo"/>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active">About</a>
+      <a href="weather.html">Weather</a>
+      <a href="recommendations.html">Recommendations</a>
+      <a href="contact.html">Contact</a>
+      <button id="theme-toggle">🌗</button>
+    </nav>
+  </header>
+
+  <main>
+    <h1>About Mood Waether</h1>
+    <p>Mood Waether suggests activities based on current and forecasted weather to match your mood and keep you prepared.</p>
+    <ul>
+      <li>Fetches live weather via Open-Meteo API</li>
+      <li>Generates mood recommendations</li>
+      <li>Visualizes forecasts with Chart.js</li>
+    </ul>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Mood Waether</p>
+  </footer>
+
+  <script type="module" src="scripts/script.js"></script>
+</body>
+</html>
+

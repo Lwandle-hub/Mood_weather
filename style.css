@@ -1,0 +1,82 @@
+:root {
+  --clr-bg: #fff;
+  --clr-text: #333;
+  --clr-primary: #4479ff;
+  --clr-card: #f9f9f9;
+}
+[data-theme="dark"] {
+  --clr-bg: #1e1e1e;
+  --clr-text: #ddd;
+  --clr-primary: #5a9bff;
+  --clr-card: #2a2a2a;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: var(--clr-bg);
+  color: var(--clr-text);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+header, footer {
+  background: var(--clr-primary);
+  color: #fff;
+  padding: 0.5rem 1rem;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+nav a {
+  margin: 0 0.5rem;
+  text-decoration: none;
+  color: #fff;
+}
+nav a.active {
+  font-weight: bold;
+}
+nav button {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+.logo {
+  height: 40px;
+}
+main {
+  flex: 1;
+  padding: 1rem;
+}
+.card {
+  background: var(--clr-card);
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+.hidden {
+  display: none;
+}
+form {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 400px;
+}
+form input, form textarea, form button {
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+#forecast-chart {
+  margin-top: 1rem;
+  max-width: 100%;
+}
+@media (min-width: 600px) {
+  nav a { margin: 0 1rem; }
+  main { max-width: 800px; margin: auto; }
+}
+

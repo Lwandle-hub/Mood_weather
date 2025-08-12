@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="generator" content="Mood Waether"/>
+  <title>Mood Waether — Weather</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header>
+    <img src="assets/images/logo.png" alt="Logo" class="logo"/>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="weather.html" class="active">Weather</a>
+      <a href="recommendations.html">Recommendations</a>
+      <a href="contact.html">Contact</a>
+      <button id="theme-toggle">🌗</button>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Live Weather Lookup</h1>
+    <form id="weather-form">
+      <label for="city">City name:</label>
+      <input type="text" id="city" name="city" required pattern="[A-Za-z\s]+"/>
+      <button type="submit">Get Weather</button>
+    </form>
+
+    <section id="weather-result" class="card hidden">
+      <h2 id="weather-city"></h2>
+      <p>Temperature: <span id="weather-temp"></span>°C</p>
+      <p>Humidity: <span id="weather-humidity"></span>%</p>
+      <canvas id="forecast-chart" width="400" height="200"></canvas>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Mood Waether</p>
+  </footer>
+
+  <script type="module" src="scripts/script.js"></script>
+</body>
+</html>
+
