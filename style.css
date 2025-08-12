@@ -1,82 +1,208 @@
+/* ========================================
+   Root Variables & Gradients
+   ======================================== */
 :root {
-  --clr-bg: #fff;
+  --clr-bg: #f5f7fa;
   --clr-text: #333;
-  --clr-primary: #4479ff;
-  --clr-card: #f9f9f9;
+  --gradient-primary: linear-gradient(135deg, #6b73ff 0%, #000dff 100%);
+  --gradient-secondary: linear-gradient(135deg, #ff8a00 0%, #e52e71 100%);
+  --clr-card-bg: #ffffff;
+  --clr-border: #e0e0e0;
+  --transition: 0.3s ease-in-out;
 }
 [data-theme="dark"] {
-  --clr-bg: #1e1e1e;
-  --clr-text: #ddd;
-  --clr-primary: #5a9bff;
-  --clr-card: #2a2a2a;
+  --clr-bg: #121212;
+  --clr-text: #e0e0e0;
+  --gradient-primary: linear-gradient(135deg, #1f1c2c 0%, #928dab 100%);
+  --gradient-secondary: linear-gradient(135deg, #232526 0%, #414345 100%);
+  --clr-card-bg: #1e1e1e;
+  --clr-border: #333;
 }
-* {
+
+/* ========================================
+   Global Reset & Base Styles
+   ======================================== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 body {
-  margin: 0;
-  font-family: sans-serif;
   background: var(--clr-bg);
   color: var(--clr-text);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
 }
-header, footer {
-  background: var(--clr-primary);
-  color: #fff;
-  padding: 0.5rem 1rem;
+img {
+  max-width: 100%;
+  display: block;
 }
+
+/* ========================================
+   Header, Navigation & Footer
+   ======================================== */
 header {
+  background: var(--gradient-primary);
+  color: #fff;
+  padding: 1rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-nav a {
-  margin: 0 0.5rem;
-  text-decoration: none;
-  color: #fff;
+.logo {
+  height: 50px;
 }
+nav {
+  display: flex;
+  align-items: center;
+}
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-weight: 500;
+  position: relative;
+  padding: 0.25rem;
+  transition: color var(--transition);
+}
+nav a:hover,
 nav a.active {
-  font-weight: bold;
+  color: #fffd;
 }
 nav button {
   background: none;
   border: none;
   color: #fff;
+  margin-left: 1.5rem;
   cursor: pointer;
-}
-.logo {
-  height: 40px;
-}
-main {
-  flex: 1;
-  padding: 1rem;
-}
-.card {
-  background: var(--clr-card);
-  padding: 1rem;
-  border-radius: 8px;
-  margin: 1rem 0;
-}
-.hidden {
-  display: none;
-}
-form {
-  display: grid;
-  gap: 0.5rem;
-  max-width: 400px;
-}
-form input, form textarea, form button {
-  padding: 0.5rem;
-  font-size: 1rem;
-}
-#forecast-chart {
-  margin-top: 1rem;
-  max-width: 100%;
-}
-@media (min-width: 600px) {
-  nav a { margin: 0 1rem; }
-  main { max-width: 800px; margin: auto; }
+  font-size: 1.2rem;
 }
 
+footer {
+  background: var(--gradient-secondary);
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  margin-top: auto;
+}
+
+/* ========================================
+   Utility Classes
+   ======================================== */
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
+}
+.hidden {
+  display: none !important;
+}
+.card {
+  background: var(--clr-card-bg);
+  border: 1px solid var(--clr-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  margin: 1.5rem 0;
+}
+.btn {
+  display: inline-block;
+  background: var(--gradient-secondary);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: opacity var(--transition);
+  text-decoration: none;
+}
+.btn:hover {
+  opacity: 0.9;
+}
+
+/* ========================================
+   Typography & Headings
+   ======================================== */
+h1, h2, h3, h4 {
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+p {
+  margin-bottom: 1rem;
+}
+ul {
+  list-style: disc inside;
+  margin-bottom: 1rem;
+}
+
+/* ========================================
+   Forms & Inputs
+   ======================================== */
+form {
+  display: grid;
+  gap: 1rem;
+}
+form input[type="text"],
+form input[type="email"],
+form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--clr-border);
+  border-radius: 4px;
+  font-size: 1rem;
+  background: var(--clr-card-bg);
+  color: var(--clr-text);
+}
+form button {
+  width: fit-content;
+  align-self: start;
+}
+
+/* ========================================
+   Hero Sections & Features Grid
+   ======================================== */
+.hero {
+  background: var(--gradient-primary);
+  color: #fff;
+  padding: 3rem 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.features {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+.feature-card {
+  background: var(--clr-card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid var(--gradient-secondary);
+}
+@media (min-width: 768px) {
+  .features {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ========================================
+   Chart Canvas
+   ======================================== */
+#forecast-chart {
+  max-width: 100%;
+  margin-top: 1rem;
+}
+
+/* ========================================
+   Responsive Adjustments
+   ======================================== */
+@media (min-width: 600px) {
+  nav a { margin-left: 2rem; }
+  .container { width: 85%; }
+}
