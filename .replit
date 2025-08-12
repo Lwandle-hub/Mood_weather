@@ -1,0 +1,20 @@
+modules = ["web", "nodejs-20"]
+run = "run"
+
+[nix]
+channel = "stable-25_05"
+
+[deployment]
+run = ["sh", "-c", "run"]
+
+[workflows]
+runButton = "Serve Website"
+
+[[workflows.workflow]]
+name = "Serve Website"
+author = 45196213
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python3 -m http.server 5000"
