@@ -4,6 +4,7 @@ import { fetchJSON } from './utils.js';
 export class Weather {
   constructor() {
     this.cache = new Map();
+    this.pendingRequests = new Map();
   }
   
   async fetchByCity(city) {
@@ -11,8 +12,30 @@ export class Weather {
     const originalCity = city.trim().replace(/\s+/g, ' ');
     const cacheKey = originalCity.toLowerCase();
     
-    if (this.cache.has(cacheKey)) return this.cache.get(cacheKey);
+    // Return cached data if available
+    if (this.cache.has(cacheKey)) {
+      return this.cache.get(cacheKey);
+    }
     
+    // Return pending request if already in progress
+    if (this.pendingRequests.has(cacheKey)) {
+      return this.pendingRequests.get(cacheKey);
+    }
+    
+    // Create new request
+    const requestPromise = this._performWeatherRequest(originalCity, cacheKey);
+    this.pendingRequests.set(cacheKey, requestPromise);
+    
+    try {
+      const result = await requestPromise;
+      this.cache.set(cacheKey, result);
+      return result;
+    } finally {
+      this.pendingRequests.delete(cacheKey);
+    }
+  }
+  
+  async _performWeatherRequest(originalCity, cacheKey) {
     try {
       // First, get coordinates for the city using geocoding
       const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(originalCity)}&count=1&language=en&format=json`;
@@ -38,7 +61,6 @@ export class Weather {
       // Add the city name to the response for display
       data.cityName = name;
       
-      this.cache.set(cacheKey, data);
       return data;
     } catch (error) {
       console.error('Weather fetch error:', error);
