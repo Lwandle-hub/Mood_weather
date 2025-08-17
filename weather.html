@@ -6,6 +6,7 @@
   <meta name="generator" content="Mood Weather"/>
   <title>Mood Weather — Weather</title>
   <link rel="stylesheet" href="style.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body data-theme="light">
   <header>
@@ -29,6 +30,15 @@
       <input type="text" id="city" name="city" required pattern="[A-Za-z\s]+" placeholder="e.g., Cape Town"/>
       <button type="submit" class="btn">Get Weather</button>
       <small>Only letters and spaces allowed.</small>
+      
+      <div class="quick-cities">
+        <p>Quick select:</p>
+        <button type="button" class="quick-city-btn" data-city="Cape Town">Cape Town</button>
+        <button type="button" class="quick-city-btn" data-city="Johannesburg">Johannesburg</button>
+        <button type="button" class="quick-city-btn" data-city="Durban">Durban</button>
+        <button type="button" class="quick-city-btn" data-city="London">London</button>
+        <button type="button" class="quick-city-btn" data-city="New York">New York</button>
+      </div>
     </form>
 
     <section id="weather-result" class="card hidden">

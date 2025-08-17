@@ -16,3 +16,18 @@ export function initThemeToggle(button) {
   });
 }
 
+export function initThemeToggle(toggleBtn) {
+  if (!toggleBtn) return;
+  
+  // Set initial theme
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.body.setAttribute('data-theme', savedTheme);
+  
+  toggleBtn.addEventListener('click', () => {
+    const currentTheme = document.body.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    document.body.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+  });
+}

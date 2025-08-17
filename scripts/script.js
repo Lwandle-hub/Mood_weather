@@ -15,11 +15,27 @@ initThemeToggle(toggleBtn);
 const weatherForm = select('#weather-form');
 if (weatherForm) {
   const resultSec = select('#weather-result');
+  const cityInput = select('#city');
+  
+  // Handle form submission
   weatherForm.addEventListener('submit', async e => {
     e.preventDefault();
-    const cityInput = select('#city');
-    const city = cityInput.value;
+    const city = cityInput.value.trim();
     if (!city) return showMessage(cityInput, 'Enter a city', 'error');
+    await fetchWeatherData(city);
+  });
+  
+  // Handle quick city buttons
+  const quickCityBtns = document.querySelectorAll('.quick-city-btn');
+  quickCityBtns.forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const city = btn.getAttribute('data-city');
+      cityInput.value = city;
+      await fetchWeatherData(city);
+    });
+  });
+  
+  async function fetchWeatherData(city) {
     try {
       const data = await weatherSvc.fetchByCity(city);
       pastSearches.push(city);
@@ -52,7 +68,7 @@ if (weatherForm) {
       showMessage(select('#weather-city'), err.message, 'error');
       resultSec.classList.add('hidden');
     }
-  });
+  }
 }
 
 // RECOMMENDATIONS PAGE
