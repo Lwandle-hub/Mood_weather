@@ -37,11 +37,20 @@ if (weatherForm) {
   
   async function fetchWeatherData(city) {
     try {
+      console.log('Fetching weather for:', city);
+      
+      // Show loading state
+      const cityElement = select('#weather-city');
+      cityElement.textContent = 'Loading...';
+      cityElement.className = '';
+      
       const data = await weatherSvc.fetchByCity(city);
+      console.log('Weather data received:', data);
+      
       pastSearches.push(city);
       
       // Display the city name from the API response (properly formatted)
-      select('#weather-city').textContent = data.cityName || city;
+      cityElement.textContent = data.cityName || city;
       
       // Display today's temperature
       const todayTemp = data.daily.temperature_2m_max[0];
@@ -60,12 +69,11 @@ if (weatherForm) {
         data.daily.temperature_2m_max.slice(0, 7)
       );
       
-      // Clear any previous error messages
-      select('#weather-city').className = '';
+      console.log('Weather display updated successfully');
       
     } catch (err) {
       console.error('Weather form error:', err);
-      const errorMessage = err.message || 'Failed to fetch weather data. Please try again.';
+      const errorMessage = err && err.message ? err.message : 'Failed to fetch weather data. Please try again.';
       showMessage(select('#weather-city'), errorMessage, 'error');
       resultSec.classList.add('hidden');
     }

@@ -42,8 +42,18 @@ export class Weather {
       return data;
     } catch (error) {
       console.error('Weather fetch error:', error);
-      // Make sure we have a proper error message
-      const errorMessage = error && error.message ? error.message : 'Failed to fetch weather data. Please try again.';
+      
+      // Handle different types of errors
+      let errorMessage = 'Failed to fetch weather data. Please try again.';
+      
+      if (error && error.message) {
+        errorMessage = error.message;
+      } else if (error && typeof error === 'string') {
+        errorMessage = error;
+      } else if (!navigator.onLine) {
+        errorMessage = 'No internet connection. Please check your network and try again.';
+      }
+      
       throw new Error(errorMessage);
     }
   }
