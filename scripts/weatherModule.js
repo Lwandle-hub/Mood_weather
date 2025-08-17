@@ -44,7 +44,11 @@ export class Weather {
       const geoData = await fetchJSON(geoUrl);
       console.log('Geocoding response:', geoData);
       
-      if (!geoData || !geoData.results || geoData.results.length === 0) {
+      if (!geoData) {
+        throw new Error('Unable to connect to geocoding service. Please try again.');
+      }
+      
+      if (!geoData.results || geoData.results.length === 0) {
         throw new Error(`City "${originalCity}" not found. Please check the spelling and try again.`);
       }
       
@@ -57,6 +61,10 @@ export class Weather {
       
       const data = await fetchJSON(weatherUrl);
       console.log('Weather response:', data);
+      
+      if (!data || !data.daily || !data.daily.temperature_2m_max) {
+        throw new Error('Invalid weather data received. Please try again.');
+      }
       
       // Add the city name to the response for display
       data.cityName = name;
