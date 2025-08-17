@@ -26,14 +26,10 @@ export function createChart(ctx, labels, data) {
     });
 }
 
-export function select(selector) {
-  return document.querySelector(selector);
-}
-
 export function showMessage(element, message, type) {
   element.textContent = message;
   element.className = type;
-  
+
   // Clear message after 5 seconds
   setTimeout(() => {
     element.textContent = '';

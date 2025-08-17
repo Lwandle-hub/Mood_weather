@@ -7,7 +7,8 @@ export class Weather {
   }
   
   async fetchByCity(city) {
-    const originalCity = city.trim();
+    // Clean the city name - remove extra spaces and trim
+    const originalCity = city.trim().replace(/\s+/g, ' ');
     const cacheKey = originalCity.toLowerCase();
     
     if (this.cache.has(cacheKey)) return this.cache.get(cacheKey);
@@ -20,7 +21,7 @@ export class Weather {
       const geoData = await fetchJSON(geoUrl);
       console.log('Geocoding response:', geoData);
       
-      if (!geoData.results || geoData.results.length === 0) {
+      if (!geoData || !geoData.results || geoData.results.length === 0) {
         throw new Error(`City "${originalCity}" not found. Please check the spelling and try again.`);
       }
       
@@ -42,7 +43,7 @@ export class Weather {
     } catch (error) {
       console.error('Weather fetch error:', error);
       // Make sure we have a proper error message
-      const errorMessage = error.message || 'Failed to fetch weather data. Please try again.';
+      const errorMessage = error && error.message ? error.message : 'Failed to fetch weather data. Please try again.';
       throw new Error(errorMessage);
     }
   }
