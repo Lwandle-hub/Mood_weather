@@ -6,6 +6,7 @@ import { select, showMessage, validateText, createChart } from './utils.js';
 document.addEventListener('DOMContentLoaded', () => {
   initializeTheme();
   initializeWeatherForm();
+  initializeGallery();
   setCurrentYear();
 });
 
@@ -123,6 +124,55 @@ async function handleWeatherRequest(weather, city) {
         errorElement.style.display = 'none';
       }
     }, 5000);
+  }
+}
+
+function initializeGallery() {
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  const modal = select('#gallery-modal');
+  const modalImage = select('#modal-image');
+  const modalCaption = select('#modal-caption');
+  const closeModal = select('.close-modal');
+  
+  if (!modal || !modalImage || !modalCaption) return;
+  
+  // Add click event to gallery items
+  galleryItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const img = item.querySelector('img');
+      const caption = item.querySelector('.gallery-caption');
+      
+      if (img && caption) {
+        modalImage.src = img.src;
+        modalImage.alt = img.alt;
+        modalCaption.innerHTML = caption.innerHTML;
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
+  
+  // Close modal events
+  if (closeModal) {
+    closeModal.addEventListener('click', closeGalleryModal);
+  }
+  
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeGalleryModal();
+    }
+  });
+  
+  // Close on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+      closeGalleryModal();
+    }
+  });
+  
+  function closeGalleryModal() {
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
   }
 }
 

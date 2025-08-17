@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="generator" content="Mood Weather"/>
+  <title>Mood Weather — Gallery</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body data-theme="light">
+  <header>
+    <img src="assets/images/logo.png" alt="Mood Weather Logo" class="logo"/>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="weather.html">Weather</a>
+      <a href="recommendations.html">Recommendations</a>
+      <a href="gallery.html" class="active">Gallery</a>
+      <a href="contact.html">Contact</a>
+      <button id="theme-toggle" aria-label="Toggle Theme">🌗</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>Weather Gallery</h1>
+    <p>Explore beautiful weather moments and seasonal inspirations from around the world.</p>
+
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" alt="Sunny landscape" loading="lazy"/>
+        <div class="gallery-caption">
+          <h3>Sunny Days</h3>
+          <p>Perfect weather for outdoor activities</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=400&h=300&fit=crop" alt="Cloudy mountains" loading="lazy"/>
+        <div class="gallery-caption">
+          <h3>Cloudy Peaks</h3>
+          <p>Dramatic cloud formations over mountains</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=400&h=300&fit=crop" alt="Rainy day" loading="lazy"/>
+        <div class="gallery-caption">
+          <h3>Rainy Moments</h3>
+          <p>Cozy indoor weather activities</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1477601263568-180e2c6d046e?w=400&h=300&fit=crop" alt="Winter snow" loading="lazy"/>
+        <div class="gallery-caption">
+          <h3>Winter Wonderland</h3>
+          <p>Snow-covered landscapes</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1534088568595-a066f410bcda?w=400&h=300&fit=crop" alt="Autumn leaves" loading="lazy"/>
+        <div class="gallery-caption">
+          <h3>Autumn Colors</h3>
+          <p>Beautiful fall foliage</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400&h=300&fit=crop" alt="Foggy morning" loading="lazy"/>
+        <div class="gallery-caption">
+          <h3>Misty Morning</h3>
+          <p>Peaceful fog-covered landscapes</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1419833479618-c595710a2a4e?w=400&h=300&fit=crop" alt="Lightning storm" loading="lazy"/>
+        <div class="gallery-caption">
+          <h3>Storm Drama</h3>
+          <p>Nature's powerful lightning displays</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" alt="Clear blue sky" loading="lazy"/>
+        <div class="gallery-caption">
+          <h3>Perfect Sky</h3>
+          <p>Crystal clear blue skies</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for enlarged view -->
+    <div id="gallery-modal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <img id="modal-image" src="" alt=""/>
+        <div id="modal-caption"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Mood Weather</p>
+  </footer>
+
+  <script type="module" src="scripts/script.js"></script>
+</body>
+</html>
