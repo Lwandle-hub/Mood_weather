@@ -7,19 +7,21 @@ export class Weather {
   }
   
   async fetchByCity(city) {
-    city = city.trim().toLowerCase();
-    if (this.cache.has(city)) return this.cache.get(city);
+    const originalCity = city.trim();
+    const cacheKey = originalCity.toLowerCase();
+    
+    if (this.cache.has(cacheKey)) return this.cache.get(cacheKey);
     
     try {
       // First, get coordinates for the city using geocoding
-      const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&language=en&format=json`;
+      const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(originalCity)}&count=1&language=en&format=json`;
       console.log('Geocoding URL:', geoUrl);
       
       const geoData = await fetchJSON(geoUrl);
       console.log('Geocoding response:', geoData);
       
       if (!geoData.results || geoData.results.length === 0) {
-        throw new Error(`City "${city}" not found. Please check the spelling and try again.`);
+        throw new Error(`City "${originalCity}" not found. Please check the spelling and try again.`);
       }
       
       const { latitude, longitude, name } = geoData.results[0];
@@ -35,11 +37,13 @@ export class Weather {
       // Add the city name to the response for display
       data.cityName = name;
       
-      this.cache.set(city, data);
+      this.cache.set(cacheKey, data);
       return data;
-    } catch (e) {
-      console.error('Weather fetch error:', e);
-      throw new Error(`Failed to fetch weather data: ${e.message}`);
+    } catch (error) {
+      console.error('Weather fetch error:', error);
+      // Make sure we have a proper error message
+      const errorMessage = error.message || 'Failed to fetch weather data. Please try again.';
+      throw new Error(errorMessage);
     }
   }
 }

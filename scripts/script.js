@@ -65,7 +65,8 @@ if (weatherForm) {
       
     } catch (err) {
       console.error('Weather form error:', err);
-      showMessage(select('#weather-city'), err.message, 'error');
+      const errorMessage = err.message || 'Failed to fetch weather data. Please try again.';
+      showMessage(select('#weather-city'), errorMessage, 'error');
       resultSec.classList.add('hidden');
     }
   }
